@@ -6,6 +6,6 @@ Pod::Spec.new do |s|
   s.license      = 'MIT'
   s.authors      = {"Engin Kurutepe" => "engin@mopedlabs.com", "Moped" => "hello@mopedlabs.com"}
   s.source       = { :git => "https://github.com/creativemess/MPNotificationView.git" }
-  s.source_files = './MPNotificationView/*.{h,m}','./OBGradientView/*.{h,m}' 
+  s.source_files = 'MPNotificationView/*.{h,m}','OBGradientView/*.{h,m}' 
   s.public_header_files = 'MPNotificationView/**/*.h'
 end

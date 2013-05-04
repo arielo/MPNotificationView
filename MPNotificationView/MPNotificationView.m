@@ -38,6 +38,7 @@ NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapR
 
 - (void) dealloc
 {
+    [super dealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -185,6 +186,7 @@ static CGFloat const __imagePadding = 8.0f;
 
 - (void) dealloc
 {
+    [super dealloc];
     _delegate = nil;
     [self removeGestureRecognizer:_tapGestureRecognizer];
 }
@@ -345,10 +347,19 @@ static CGFloat const __imagePadding = 8.0f;
     }
     
     notification.textLabel.text = text;
-    notification.detailTextLabel.text = detail;
     notification.imageView.image = image;
     notification.duration = duration;
     notification.tapBlock = block;
+    
+    if (detail != nil) {
+        notification.detailTextLabel.text = detail;
+    } else {
+        notification.textLabel.font = notification.detailTextLabel.font;
+        notification.textLabel.numberOfLines = 2;
+        CGRect textLabelFrame = notification.textLabel.frame;
+        textLabelFrame.size.height = notification.textLabel.font.lineHeight * 2;
+        notification.textLabel.frame = textLabelFrame;
+    }
     
     UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:notification
                                                                          action:@selector(handleTap:)];

@@ -24,6 +24,7 @@ static CGRect notificationRect()
 }
 
 NSString *kMPNotificationViewTapReceivedNotification = @"kMPNotificationViewTapReceivedNotification";
+NSString *kMPNotificationViewCompleteNotification = @"kMPNotificationViewCompleteNotification";
 
 #pragma mark MPNotificationWindow
 
@@ -480,6 +481,8 @@ static CGFloat const __imagePadding = 8.0f;
                              [viewToRotateIn removeFromSuperview];
                              __notificationWindow.hidden = YES;
                              __notificationWindow.currentNotification = nil;
+                             [[NSNotificationCenter defaultCenter] postNotificationName:kMPNotificationViewCompleteNotification
+                                                                                 object:self];
                          }
                          
                           __notificationWindow.backgroundColor = [UIColor clearColor];

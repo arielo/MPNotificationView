@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 extern NSString *kMPNotificationViewTapReceivedNotification;
+extern NSString *kMPNotificationViewCompleteNotification;
 
 typedef void (^MPNotificationSimpleAction)(id);
 @protocol MPNotificationViewDelegate;

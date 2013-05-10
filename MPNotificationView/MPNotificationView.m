@@ -203,7 +203,7 @@ static CGFloat const __imagePadding = 8.0f;
         
         _contentView = [[OBGradientView alloc] initWithFrame:self.bounds];
         _contentView.colors = @[(id)[[UIColor colorWithWhite:0.99f alpha:1.0f] CGColor],
-                                (id)[[UIColor colorWithWhite:0.9f  alpha:1.0f] CGColor]];
+                                (id)[[UIColor colorWithWhite:0.85f  alpha:1.0f] CGColor]];
         
         _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _contentView.layer.cornerRadius = 8.0f;
@@ -216,10 +216,14 @@ static CGFloat const __imagePadding = 8.0f;
         _imageView.clipsToBounds = YES;
         [self addSubview:_imageView];
         
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(40, 1, 1, _contentView.frame.size.height - 2)];
+        lineView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+        [self addSubview:lineView];
+        
         UIFont *textFont = [UIFont boldSystemFontOfSize:14.0f];
-        CGRect textFrame = CGRectMake(__imagePadding + CGRectGetMaxX(_imageView.frame),
+        CGRect textFrame = CGRectMake(__imagePadding + _imageView.frame.size.width + 10,
                                       2,
-                                      notificationWidth - __imagePadding * 2 - CGRectGetMaxX(_imageView.frame),
+                                      notificationWidth - (__imagePadding * 2) - _imageView.frame.size.width - 10,
                                       textFont.lineHeight);
         _textLabel = [[UILabel alloc] initWithFrame:textFrame];
         _textLabel.font = textFont;
@@ -232,7 +236,7 @@ static CGFloat const __imagePadding = 8.0f;
         UIFont *detailFont = [UIFont systemFontOfSize:13.0f];
         CGRect detailFrame = CGRectMake(CGRectGetMinX(textFrame),
                                         CGRectGetMaxY(textFrame),
-                                        notificationWidth - __imagePadding * 2 - CGRectGetMaxX(_imageView.frame),
+                                        notificationWidth - (__imagePadding * 2) - _imageView.frame.size.width - 10,
                                         detailFont.lineHeight);
         
         _detailTextLabel = [[UILabel alloc] initWithFrame:detailFrame];
